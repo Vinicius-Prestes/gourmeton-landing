@@ -1,17 +1,42 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import Nav from './components/nav';
+import Beneficios from './components/beneficios';
+import Funcionalidades from './components/funcionalidade';
+import Depoimentos from './components/depoimentos';
+import FormularioContato from './components/contato';
+import Rodape from './components/rodape';
+import Menu from './components/menulinks';  
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const AppContainer = styled.div`
+  font-family: Arial, sans-serif;
+  
+`;
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+function App() {
+  const [pratos, setPratos] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await
+fetch('https://api.spoonacular.com/recipes/random?number=5&apiKey=65ca745477704bc296379893f9e2618c');
+      const data = await response.json();
+      setPratos(data.recipes);
+    };
+    fetchData();
+    
+  }, []);
+
+  return (
+    <AppContainer>
+      <Menu />  
+      <Nav />
+      <Beneficios />
+      <Funcionalidades pratos={pratos} />
+      <Depoimentos />
+      <FormularioContato />
+      <Rodape />
+    </AppContainer>
+  );
+}
+
+export default App
