@@ -4,14 +4,14 @@ import { Link } from 'react-scroll';
 
 const NavStyle = styled.section`
   height: 100vh;
-  background-image: url('/images/comida-deliciosa.jpg'); 
+  background-image: url(src/imagens/prato_delicioso.jpeg); 
   background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: white;
+  color: black;
 `;
 
 const Titulo = styled.h1`
@@ -47,6 +47,7 @@ const BotaoDownload = styled.button`
   font-size: 1.2rem;
   border: none;
   cursor: pointer;
+  padding-top: -20px;
 
   @media (max-width: 768px) {
     padding: 0.8rem 1.5rem;
@@ -72,4 +73,4 @@ function Nav() {
   );
 }
 
-export default Nav;
+export default Nav

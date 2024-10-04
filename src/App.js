@@ -1,37 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-scroll';
-import HeroSection from './components/HeroSection';
-import Beneficios from './components/Beneficios';
-import Funcionalidades from './components/Funcionalidades';
-import Depoimentos from './components/Depoimentos';
-import FormularioContato from './components/FormularioContato';
-import Rodape from './components/Rodape';
 import Nav from './components/nav';
+import Beneficios from './components/beneficios';
+import Funcionalidades from './components/funcionalidade';
+import Depoimentos from './components/depoimentos';
+import FormularioContato from './components/contato';
+import Rodape from './components/rodape';
+import Menu from './components/menulinks';  
 
 const AppContainer = styled.div`
   font-family: Arial, sans-serif;
+  
 `;
 
 function App() {
   const [pratos, setPratos] = useState([]);
-
   useEffect(() => {
-    const buscarPratos = async () => {
-      const response = await fetch('https://api.spoonacular.com/recipes/random?apiKey=YOUR_API_KEY&number=3');
+    const fetchData = async () => {
+      const response = await
+fetch('https://api.spoonacular.com/recipes/random?number=5&apiKey=65ca745477704bc296379893f9e2618c');
       const data = await response.json();
       setPratos(data.recipes);
     };
-
-    buscarPratos();
+    fetchData();
+    
   }, []);
 
   return (
     <AppContainer>
+      <Menu />  
       <Nav />
-      <Link to="beneficios" smooth={true} duration={800}>
-        <button>Ver Benefícios</button>
-      </Link>
       <Beneficios />
       <Funcionalidades pratos={pratos} />
       <Depoimentos />
