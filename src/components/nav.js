@@ -4,7 +4,7 @@ import { Link } from 'react-scroll';
 
 const NavStyle = styled.section`
   height: 100vh;
-  background-image: url(src/imagens/prato_delicioso.jpeg); 
+ 
   background-size: cover;
   display: flex;
   flex-direction: column;

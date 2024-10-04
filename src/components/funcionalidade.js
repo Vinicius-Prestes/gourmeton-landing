@@ -14,7 +14,7 @@ const GridPratos = styled.div`
 `;
 
 const Prato = styled.div`
-  flex: 0 1 calc(50% - 2rem);  // 50% da largura com margem de 2rem
+  flex: 0 1 45%;  // 45% da largura disponível para cada item, com margem para caber 2 por linha
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   background-color: #fff;
@@ -22,14 +22,17 @@ const Prato = styled.div`
   border-radius: 10px;
   overflow: hidden;
 
-  img {
-    max-width: 100%;
-    border-radius: 10px;
-  }
-
   @media (max-width: 768px) {
     flex: 0 1 100%;  // Ocupa 100% da largura em telas menores
   }
+`;
+
+const ImagemPrato = styled.img`
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  max-height: 200px;  // Controlando a altura máxima da imagem
 `;
 
 function Funcionalidades({ pratos }) {
@@ -43,8 +46,8 @@ function Funcionalidades({ pratos }) {
         {pratos && pratos.length > 0 ? (
           pratos.map((prato) => (
             <Prato key={prato.id}>
+              <ImagemPrato src={prato.image} alt={prato.title} />
               <h3>{prato.title}</h3>
-              <img src={prato.image} alt={prato.title} />
             </Prato>
           ))
         ) : (
