@@ -1,38 +1,42 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-scroll';
 import HeroSection from './components/HeroSection';
-import Benefits from './components/Benefits';
-import Features from './components/Features';
-import Testimonials from './components/Testimonials';
-import ContactForm from './components/ContactForm';
-import Footer from './components/Footer';
+import Beneficios from './components/Beneficios';
+import Funcionalidades from './components/Funcionalidades';
+import Depoimentos from './components/Depoimentos';
+import FormularioContato from './components/FormularioContato';
+import Rodape from './components/Rodape';
+import Nav from './components/nav';
 
 const AppContainer = styled.div`
   font-family: Arial, sans-serif;
 `;
 
 function App() {
-  const [dishes, setDishes] = useState([]);
+  const [pratos, setPratos] = useState([]);
 
   useEffect(() => {
-    // Fetch data from Spoonacular API (example)
-    const fetchDishes = async () => {
+    const buscarPratos = async () => {
       const response = await fetch('https://api.spoonacular.com/recipes/random?apiKey=YOUR_API_KEY&number=3');
       const data = await response.json();
-      setDishes(data.recipes);
+      setPratos(data.recipes);
     };
 
-    fetchDishes();
+    buscarPratos();
   }, []);
 
   return (
     <AppContainer>
-      <HeroSection />
-      <Benefits />
-      <Features dishes={dishes} />
-      <Testimonials />
-      <ContactForm />
-      <Footer />
+      <Nav />
+      <Link to="beneficios" smooth={true} duration={800}>
+        <button>Ver Benefícios</button>
+      </Link>
+      <Beneficios />
+      <Funcionalidades pratos={pratos} />
+      <Depoimentos />
+      <FormularioContato />
+      <Rodape />
     </AppContainer>
   );
 }
